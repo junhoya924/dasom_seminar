@@ -31,7 +31,7 @@ void ClMap<Cl_keyType, Cl_valueType>::insert(ClPair<Cl_keyType, Cl_valueType>& C
 	for(int i = 0; i < cPairs; i++)
 		if(pPairs[i].first() == Cl_element.first())
 		{
-			cout << "Àß¸øµÈ ÀÔ·ÂÀÔ´Ï´Ù." << endl;
+			cout << "ìž˜ëª»ëœ ìž…ë ¥ìž…ë‹ˆë‹¤." << endl;
 			return;
 		}
 
