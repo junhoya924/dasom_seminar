@@ -1,8 +1,7 @@
 # dasom_seminar
 For dasom seminar repositiry (Kyunghee Univ)
 
-template <typename Cl_keyType, typename Cl_valueType>
-class ClMap
+# template <typename Cl_keyType, typename Cl_valueType> class ClMap
 {
 private:
 	ClPair<Cl_keyType, Cl_valueType>* pPairs;
@@ -17,8 +16,7 @@ public:
 	void operator=(ClMap<Cl_keyType, Cl_valueType> Cl_Map);
 };
 
-template <typename Cl_firstType, typename Cl_secondType>
-class ClPair
+# template <typename Cl_firstType, typename Cl_secondType> class ClPair
 {
 private:
 	Cl_firstType Cl_first;
