@@ -9,13 +9,13 @@ private:
 	ClPair<Cl_keyType, Cl_valueType>* pPairs;
 	int cPairs;
 public:
-	ClMap();
-	void insert(ClPair<Cl_keyType, Cl_valueType>& Cl_element);
-	Cl_valueType at(Cl_keyType Cl_key);
-	bool empty();
-	int size() { return cPairs; }
-	Cl_valueType& operator[](Cl_keyType Cl_key);
-	void operator=(ClMap<Cl_keyType, Cl_valueType> Cl_Map);
+	ClMap();							// 기본생성자
+	void insert(ClPair<Cl_keyType, Cl_valueType>& Cl_element);	// ClMap에 parameter로 넣어준 ClPair를 insert
+	Cl_valueType& at(Cl_keyType Cl_key);				// ClPair.first()가 Cl_key인 ClPair.second를 return
+	bool empty();							// ClMap이 비어있다면 true를 return
+	int size() { return cPairs; }					// ClMap의 크기를 return
+	Cl_valueType& operator[](Cl_keyType Cl_key);			// ClPair.first()가 Cl_key인 ClPair.second를 return
+	void operator=(ClMap<Cl_keyType, Cl_valueType> Cl_Map);		// Map2 = Map1이면 Map2의 내용이 Map1가 같아짐
 };
 
 template <typename Cl_keyType, typename Cl_valueType>
@@ -48,13 +48,19 @@ void ClMap<Cl_keyType, Cl_valueType>::insert(ClPair<Cl_keyType, Cl_valueType>& C
 }
 
 template <typename Cl_keyType, typename Cl_valueType>
-Cl_valueType ClMap<Cl_keyType, Cl_valueType>::at(Cl_keyType Cl_key)
+Cl_valueType& ClMap<Cl_keyType, Cl_valueType>::at(Cl_keyType Cl_key)
 {
 	for(int i = 0; i < cPairs; i++)
 	{
 		if(pPairs[i].first() == Cl_key)
 			return pPairs[i].second();
 	}
+	
+	ClPair<Cl_keyType, Cl_valueType> Cl_newPair;
+	Cl_newPair.first() = Cl_key;
+	insert(Cl_newPair);
+
+	return pPairs[cPairs - 1].second();
 }
 
 template <typename Cl_keyType, typename Cl_valueType>
