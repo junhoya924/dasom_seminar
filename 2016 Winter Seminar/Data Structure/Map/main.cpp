@@ -34,4 +34,20 @@ void main()
 	cout << Cl_Map1[sStr3] << endl;		// »ý¼º
 	cout << Cl_Map2.empty() << endl;	// 0
 	cout << Cl_Map2.size() << endl;		// 3
+
+	ClMap<string, string>::iterator Cl_it;
+
+	for(Cl_it = Cl_Map1.begin(); Cl_it <= Cl_Map1.end(); Cl_it++)
+		cout << (*Cl_it).first() << " " << (*Cl_it).second() << endl;
+	// test ½È¾î
+	// c++ ±ÍÂú¾Æ
+	// ddong »ý¼º
+
+	Cl_it = Cl_Map1.end();
+	Cl_Map1.erase(Cl_it);	// no more ddong »ý¼º! yeah!
+
+	for(Cl_it = Cl_Map1.begin(); Cl_it <= Cl_Map1.end(); Cl_it++)
+		cout << (*Cl_it).first() << " " << (*Cl_it).second() << endl;
+	// test ½È¾î
+	// c++ ±ÍÂú¾Æ
 }

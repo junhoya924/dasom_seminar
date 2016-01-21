@@ -3,20 +3,93 @@
 #include "Pair.h"
 
 template <typename Cl_keyType, typename Cl_valueType>
+class ClIterator
+{
+private:
+	ClPair<Cl_keyType, Cl_valueType>* pPointer;
+public:
+	ClPair<Cl_keyType, Cl_valueType>* getPPointer() { return pPointer; }
+public:
+	ClIterator() { pPointer = NULL; }
+	ClIterator(ClPair<Cl_keyType, Cl_valueType>* Cl_input) { pPointer = Cl_input; }
+	ClIterator(const ClIterator<Cl_keyType, Cl_valueType>& Cl_input) { pPointer = Cl_input.pPointer; }
+	void operator++() { pPointer++; }
+	void operator--() { pPointer--; }
+	bool operator<(ClIterator Cl_input);
+	bool operator>(ClIterator Cl_input);
+	bool operator<=(ClIterator Cl_input);
+	bool operator>=(ClIterator Cl_input);
+	bool operator==(ClIterator Cl_input);
+	ClPair<Cl_keyType, Cl_valueType>& operator*() { return *pPointer; }
+	void operator=(ClIterator& Cl_input) { pPointer = Cl_input.pPointer; }
+};
+
+template <typename Cl_keyType, typename Cl_valueType>
 class ClMap
 {
 private:
 	ClPair<Cl_keyType, Cl_valueType>* pPairs;
 	int cPairs;
 public:
-	ClMap();							// 기본생성자
+	typedef ClIterator<Cl_keyType, Cl_valueType> iterator;
+public:
+	ClMap();													// 기본생성자
 	void insert(ClPair<Cl_keyType, Cl_valueType>& Cl_element);	// ClMap에 parameter로 넣어준 ClPair를 insert
-	Cl_valueType& at(Cl_keyType Cl_key);				// ClPair.first()가 Cl_key인 ClPair.second를 return
-	bool empty();							// ClMap이 비어있다면 true를 return
-	int size() { return cPairs; }					// ClMap의 크기를 return
-	Cl_valueType& operator[](Cl_keyType Cl_key);			// ClPair.first()가 Cl_key인 ClPair.second를 return
-	void operator=(ClMap<Cl_keyType, Cl_valueType> Cl_Map);		// Map2 = Map1이면 Map2의 내용이 Map1가 같아짐
+	void erase(iterator& Cl_it);
+	Cl_valueType& at(Cl_keyType Cl_key);						// ClPair.first()가 Cl_key인 ClPair.second를 return
+	bool empty();												// ClMap이 비어있다면 true를 return
+	int size() { return cPairs; }								// ClMap의 크기를 return
+	ClIterator<Cl_keyType, Cl_valueType> begin() { return &(pPairs[0]); }
+	ClIterator<Cl_keyType, Cl_valueType> end() { return &(pPairs[cPairs - 1]); }
+	ClIterator<Cl_keyType, Cl_valueType> find(Cl_keyType Cl_key);
+	Cl_valueType& operator[](Cl_keyType Cl_key);				// ClPair.first()가 Cl_key인 ClPair.second를 return
+	void operator=(ClMap<Cl_keyType, Cl_valueType>& Cl_Map);	// Map2 = Map1이면 Map2의 내용이 Map1가 같아짐
 };
+
+template <typename Cl_keyType, typename Cl_valueType>
+bool ClIterator<Cl_keyType, Cl_valueType>::operator<(ClIterator Cl_input)
+{
+	if(pPointer < Cl_input.pPointer)
+		return true;
+	else
+		return false;
+}
+
+template <typename Cl_keyType, typename Cl_valueType>
+bool ClIterator<Cl_keyType, Cl_valueType>::operator>(ClIterator Cl_input)
+{
+	if(pPointer > Cl_input.pPointer)
+		return true;
+	else
+		return false;
+}
+
+template <typename Cl_keyType, typename Cl_valueType>
+bool ClIterator<Cl_keyType, Cl_valueType>::operator<=(ClIterator Cl_input)
+{
+	if(pPointer <= Cl_input.pPointer)
+		return true;
+	else
+		return false;
+}
+
+template <typename Cl_keyType, typename Cl_valueType>
+bool ClIterator<Cl_keyType, Cl_valueType>::operator>=(ClIterator Cl_input)
+{
+	if(pPointer >= Cl_input.pPointer)
+		return true;
+	else
+		return false;
+}
+
+template <typename Cl_keyType, typename Cl_valueType>
+bool ClIterator<Cl_keyType, Cl_valueType>::operator==(ClIterator Cl_input)
+{
+	if(pPointer == Cl_input.pPointer)
+		return true;
+	else
+		return false;
+}
 
 template <typename Cl_keyType, typename Cl_valueType>
 ClMap<Cl_keyType, Cl_valueType>::ClMap()
@@ -48,6 +121,32 @@ void ClMap<Cl_keyType, Cl_valueType>::insert(ClPair<Cl_keyType, Cl_valueType>& C
 }
 
 template <typename Cl_keyType, typename Cl_valueType>
+void ClMap<Cl_keyType, Cl_valueType>::erase(iterator& Cl_it)
+{
+	ClPair<Cl_keyType, Cl_valueType>* pTempPairs = pPairs;
+
+	pPairs = new ClPair<Cl_keyType, Cl_valueType>[cPairs-1];
+
+	int cCount = 0;
+	for(iterator Cl_tempIt = &pTempPairs[0]; Cl_tempIt <= &pTempPairs[cPairs-1]; Cl_tempIt++)
+	{
+		if(Cl_tempIt == Cl_it)
+			break;
+		else
+			cCount++;
+	}
+
+	int i;
+	for(i = 0; i < cCount; i++)
+		pPairs[i] = pTempPairs[i];
+	for(i; i < cPairs-1; i++)
+		pPairs[i] = pTempPairs[i+1];
+
+	cPairs--;
+	delete[] pTempPairs;
+}
+
+template <typename Cl_keyType, typename Cl_valueType>
 Cl_valueType& ClMap<Cl_keyType, Cl_valueType>::at(Cl_keyType Cl_key)
 {
 	for(int i = 0; i < cPairs; i++)
@@ -73,6 +172,16 @@ bool ClMap<Cl_keyType, Cl_valueType>::empty()
 }
 
 template <typename Cl_keyType, typename Cl_valueType>
+ClIterator<Cl_keyType, Cl_valueType> ClMap<Cl_keyType, Cl_valueType>::find(Cl_keyType Cl_key)
+{
+	for(ClIterator Cl_it = begin(); Cl_it <= end(); Cl_it++)
+	{
+		if((*Cl_it).first() == Cl_key)
+			return Cl_it;
+	}
+}
+
+template <typename Cl_keyType, typename Cl_valueType>
 Cl_valueType& ClMap<Cl_keyType, Cl_valueType>::operator[](Cl_keyType Cl_key)
 {
 	for(int i = 0; i < cPairs; i++)
@@ -89,7 +198,7 @@ Cl_valueType& ClMap<Cl_keyType, Cl_valueType>::operator[](Cl_keyType Cl_key)
 }
 
 template <typename Cl_keyType, typename Cl_valueType>
-void ClMap<Cl_keyType, Cl_valueType>::operator=(ClMap<Cl_keyType, Cl_valueType> Cl_Map)
+void ClMap<Cl_keyType, Cl_valueType>::operator=(ClMap<Cl_keyType, Cl_valueType>& Cl_Map)
 {
 	cPairs = Cl_Map.cPairs;
 
