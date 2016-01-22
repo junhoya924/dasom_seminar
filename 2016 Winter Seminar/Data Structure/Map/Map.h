@@ -24,6 +24,7 @@ public:
 	bool operator==(ClIterator Cl_input);
 	bool operator!=(ClIterator Cl_input);
 	ClPair<Cl_keyType, Cl_valueType>& operator*() { return *pPointer; }
+	ClPair<Cl_keyType, Cl_valueType>* operator->() { return pPointer; }
 	void operator=(ClIterator& Cl_input) { pPointer = Cl_input.pPointer; }
 };
 
