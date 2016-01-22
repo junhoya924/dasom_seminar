@@ -13,13 +13,16 @@ public:
 	ClIterator() { pPointer = NULL; }
 	ClIterator(ClPair<Cl_keyType, Cl_valueType>* Cl_input) { pPointer = Cl_input; }
 	ClIterator(const ClIterator<Cl_keyType, Cl_valueType>& Cl_input) { pPointer = Cl_input.pPointer; }
-	void operator++() { pPointer++; }
-	void operator--() { pPointer--; }
+	ClIterator<Cl_keyType, Cl_valueType>& operator++();			// 전위
+	ClIterator<Cl_keyType, Cl_valueType>& operator--();
+	const ClIterator<Cl_keyType, Cl_valueType> operator++(int);	// 후위
+	const ClIterator<Cl_keyType, Cl_valueType> operator--(int);
 	bool operator<(ClIterator Cl_input);
 	bool operator>(ClIterator Cl_input);
 	bool operator<=(ClIterator Cl_input);
 	bool operator>=(ClIterator Cl_input);
 	bool operator==(ClIterator Cl_input);
+	bool operator!=(ClIterator Cl_input);
 	ClPair<Cl_keyType, Cl_valueType>& operator*() { return *pPointer; }
 	void operator=(ClIterator& Cl_input) { pPointer = Cl_input.pPointer; }
 };
@@ -45,6 +48,40 @@ public:
 	Cl_valueType& operator[](Cl_keyType Cl_key);				// ClPair.first()가 Cl_key인 ClPair.second를 return
 	void operator=(ClMap<Cl_keyType, Cl_valueType>& Cl_Map);	// Map2 = Map1이면 Map2의 내용이 Map1가 같아짐
 };
+
+template <typename Cl_keyType, typename Cl_valueType>
+ClIterator<Cl_keyType, Cl_valueType>& ClIterator<Cl_keyType, Cl_valueType>::operator++()
+{
+	this->pPointer += 1;
+
+	return *this;
+}
+
+template <typename Cl_keyType, typename Cl_valueType>
+ClIterator<Cl_keyType, Cl_valueType>& ClIterator<Cl_keyType, Cl_valueType>::operator--()
+{
+	this->pPointer -= 1;
+
+	return *this;
+}
+
+template <typename Cl_keyType, typename Cl_valueType>
+const ClIterator<Cl_keyType, Cl_valueType> ClIterator<Cl_keyType, Cl_valueType>::operator++(int)
+{
+	const ClIterator<Cl_keyType, Cl_valueType> Cl_output(*this);
+	this->pPointer += 1;
+
+	return Cl_output;
+}
+
+template <typename Cl_keyType, typename Cl_valueType>
+const ClIterator<Cl_keyType, Cl_valueType> ClIterator<Cl_keyType, Cl_valueType>::operator--(int)
+{
+	const ClIterator<Cl_keyType, Cl_valueType> Cl_output(*this);
+	this->pPointer -= 1;
+
+	return Cl_output;
+}
 
 template <typename Cl_keyType, typename Cl_valueType>
 bool ClIterator<Cl_keyType, Cl_valueType>::operator<(ClIterator Cl_input)
@@ -86,6 +123,15 @@ template <typename Cl_keyType, typename Cl_valueType>
 bool ClIterator<Cl_keyType, Cl_valueType>::operator==(ClIterator Cl_input)
 {
 	if(pPointer == Cl_input.pPointer)
+		return true;
+	else
+		return false;
+}
+
+template <typename Cl_keyType, typename Cl_valueType>
+bool ClIterator<Cl_keyType, Cl_valueType>::operator!=(ClIterator Cl_input)
+{
+	if(pPointer != Cl_input.pPointer)
 		return true;
 	else
 		return false;
