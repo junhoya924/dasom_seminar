@@ -29,6 +29,18 @@ int main()
 	cout << "Stack.top() -> " << myStack.fnTop() << endl;
 	cout << endl;
 
+	cout << "Stack.Search(3) -> ";
+	if (myStack.fnSearch(3))
+	{
+		cout << "true" << endl << endl;
+	}
+	else
+	{
+		cout << "false" << endl << endl;
+	}
+
+	cout << "Stack.StackSize() -> " << myStack.fnStackSize() << endl << endl;
+
 	//-----------------------------------------
 	cout << "---------------------------------------" << endl << endl;
 	cout << "1. Queue" << endl << endl;
@@ -48,6 +60,18 @@ int main()
 	cout << "Queue.DeQueue () -> " << myQueue.fnDeQueue() << endl;
 	cout << "Queue.DeQueue () -> " << myQueue.fnDeQueue() << endl;
 	cout << endl;
+
+	cout << "Queue.Search(3) -> ";
+	if (myQueue.fnSearch(3))
+	{
+		cout << "true" << endl << endl;
+	}
+	else
+	{
+		cout << "false" << endl << endl;
+	}
+
+	cout << "Queue.StackSize() -> " << myQueue.fnQueueSize() << endl << endl;
 
 	return 0;
 }
