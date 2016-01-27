@@ -1,0 +1,31 @@
+#include "DoubleLinkedList.h"
+
+int main()
+{
+	CDoubleLinkedList<int> list;
+	for (int i = 0; i < 3; i++)
+	{
+		list.Append(i + 1);
+
+		cout << *list.GetAt(i + 1) << endl;
+	}
+	cout << list.size() << endl;
+
+	list.RemoveAt(2);
+
+
+	cout << endl;
+	for (int i = 0; i < 2; i++)
+	{
+		cout << *list.GetAt(i + 1) << endl;;
+	}
+
+	cout << endl;
+	list.InsertAt(2, 2);
+	for (int i = 0; i < 3; i++)
+	{
+		cout << *list.GetAt(i + 1) << endl;
+	}
+
+	return 0;
+}
