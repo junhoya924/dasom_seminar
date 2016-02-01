@@ -33,6 +33,7 @@ int main()
 	{
 		cout << "list가 비어있습니다." << endl;
 	}
+	list.insertAt(2, 3); //
 
 	for (int i = 0; i < 5; i++)
 	{
@@ -72,6 +73,9 @@ int main()
 	{
 		cout << "list가 비어있습니다." << endl;
 	}
+	
+	list.pop_front(); //
+	
 	list.push_front(1);
 	list.push_front(3);
 	list.push_front(2);
