@@ -13,7 +13,7 @@ public:
 	{
 		data = i_data;
 	}
-	
+
 	//dataType operator*() { return *pData; }
 };
 
@@ -23,11 +23,11 @@ class CIterator
 private:
 	CNode<dataType>* pNode;
 public:
-	CIterator(CNode<dataType>* pNode = NULL) { this->pNode = pNode; }
-	CIterator(const CIterator &i_iterator) { this->pNode = i_iterator.pNode; }
-	void operator=(CIterator i_iterator) { this->pNode = i_iterator.pNode;	}
-	dataType& operator *() { return pNode->data; }
-	CNode<dataType>* operator->() { return pNode; }
+	CIterator(CNode<dataType>* pNode = NULL) { this->pNode = pNode; } 
+	CIterator(const CIterator &i_iterator) { this->pNode = i_iterator.pNode; } 
+	void operator=(CIterator i_iterator) { this->pNode = i_iterator.pNode; }
+	dataType& operator *() { return pNode->data; } 
+	CNode<dataType>* operator->() { return pNode; } 
 	const bool operator ==(CIterator<dataType> i_iterator) { return this->pNode == i_iterator.pNode; }
 	const bool operator !=(CIterator<dataType> i_iterator) { return this->pNode != i_iterator.pNode; }
 	const CIterator& operator++() //전위
@@ -49,7 +49,7 @@ public:
 	}
 	/*ostream& operator<<(CIterator<dataType> i_iterator)
 	{
-		return *i_iterator;
+	return *i_iterator;
 	}*/
 };
 
@@ -62,7 +62,7 @@ private:
 public:
 	typedef CIterator<dataType>* iterator;
 public:
-	CLinkedList()	
+	CLinkedList()
 	{
 		pHead = NULL;
 	}
@@ -148,11 +148,20 @@ void CLinkedList<dataType>::push_front(const dataType& i_data)
 }
 
 template <class dataType>
-void CLinkedList<dataType>::pop_front()
+void CLinkedList<dataType>::pop_front() // --------------예외처리
 {
-	CNode<dataType>* pCur = pHead->pNext;
-	delete pHead;
-	pHead = pCur;
+	if (pHead != NULL)
+	{
+		CNode<dataType>* pCur = pHead->pNext;
+		delete pHead;
+		pHead = pCur;
+	}
+	else // 리스트가 비었을 경우
+	{
+		cout << "List가 비어있습니다." << endl;
+	}
+
+	return;
 }
 
 template <class dataType>
@@ -176,9 +185,13 @@ void CLinkedList<dataType>::push_back(const dataType& i_data)
 }
 
 template <class dataType>
-void CLinkedList<dataType>::pop_back()
+void CLinkedList<dataType>::pop_back() //----------예외처리
 {
-	if (pHead->pNext == NULL)
+	if (pHead == NULL) // 아무것도 없을 때
+	{
+		cout << "List가 비어있습니다." << endl;
+	}
+	else if (pHead->pNext == NULL)
 	{
 		delete pHead;
 		pHead = NULL;
@@ -196,7 +209,7 @@ void CLinkedList<dataType>::pop_back()
 }
 
 template <class dataType>
-void CLinkedList<dataType>::insertAt(const dataType& i_data, int i_index)
+void CLinkedList<dataType>::insertAt(const dataType& i_data, int i_index) // --------예외처리
 {
 	if (i_index == 1)
 	{
@@ -204,16 +217,29 @@ void CLinkedList<dataType>::insertAt(const dataType& i_data, int i_index)
 	}
 	else if (i_index > 1)
 	{
-		CNode<dataType>* pCur = pHead;
-		for (int i = 0; i < i_index - 2; i++)
+		if (i_index < size()) //-----
 		{
-			pCur = pCur->pNext;
-		}
+			CNode<dataType>* pCur = pHead;
+			for (int i = 0; i < i_index - 2; i++)
+			{
+				pCur = pCur->pNext;
+			}
 
-		CNode<dataType>* pTemp = pCur->pNext;
-		pCur->pNext = new CNode<dataType>(i_data);
-		pCur->pNext->pNext = pTemp;
+			CNode<dataType>* pTemp = pCur->pNext;
+			pCur->pNext = new CNode<dataType>(i_data);
+			pCur->pNext->pNext = pTemp;
+		}
+		else if (i_index == size()) //-----
+		{
+			push_back(i_data);
+		}
+		else //------
+		{
+			cout << i_index << "의 위치에 insert 할 수 없습니다." << endl;
+		}
 	}
+
+	return;
 }
 
 template <class dataType>
@@ -233,7 +259,7 @@ void CLinkedList<dataType>::clear()
 template <class dataType>
 bool CLinkedList<dataType>::empty()
 {
-	return pHead == NULL;	
+	return pHead == NULL;
 }
 
 template <class dataType>
@@ -299,7 +325,7 @@ void CLinkedList<dataType>::remove(const dataType& i_data)
 			}
 		}
 	}
-		
+
 }
 
 template <class dataType>
