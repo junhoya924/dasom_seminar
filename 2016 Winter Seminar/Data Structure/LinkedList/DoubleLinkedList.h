@@ -43,37 +43,54 @@ public:
 };
 
 template<typename dataType>
-dataType* CDoubleLinkedList<dataType>::GetAt(int i_index)
+dataType* CDoubleLinkedList<dataType>::GetAt(int i_index) //-------예외처리
 {
 	int cCount = 0;
 	CNode* pCur = pHead;
 
-	while (cCount != i_index)
+	if (i_index <= size()) //-----
 	{
-		pCur = pCur->pNext;
-		cCount++;
+		while (cCount != i_index)
+		{
+			pCur = pCur->pNext;
+			cCount++;
+		}
+	}
+	else
+	{
+		cout << i_index << "의 위치에서 Get 할 수 없습니다." << endl;
 	}
 
 	return pCur->data;
 }
 
 template<typename dataType>
-void CDoubleLinkedList<dataType>::RemoveAt(int i_index)
+void CDoubleLinkedList<dataType>::RemoveAt(int i_index) //----------예외처리
 {
 	int cCount = 0;
 	CNode* pCur = pHead;
 
-	while (cCount != i_index - 1)
+	if (i_index <= size()) //-------
 	{
-		pCur = pCur->pNext;
-		cCount++;
+		while (cCount != i_index - 1)
+		{
+			pCur = pCur->pNext;
+			cCount++;
+		}
+
+
+		CNode* pTemp = pCur->pNext->pNext;
+
+		delete pCur->pNext;
+		pCur->pNext = pTemp;
+		pCur->pNext->pPrev = pCur;
+	}
+	else //--------
+	{
+		cout << i_index << "의 위치에 Remove 할 수 없습니다." << endl;
 	}
 
-	CNode* pTemp = pCur->pNext->pNext;
-
-	delete pCur->pNext;
-	pCur->pNext = pTemp;
-	pCur->pNext->pPrev = pCur;
+	return;
 }
 
 template<typename dataType>
@@ -94,21 +111,29 @@ void CDoubleLinkedList<dataType>::Append(const dataType& i_data)
 }
 
 template<typename dataType>
-void CDoubleLinkedList<dataType>::InsertAt(const dataType& i_data, int i_index)
+void CDoubleLinkedList<dataType>::InsertAt(const dataType& i_data, int i_index) //-----------예외처리
 {
-	CNode* pCur = pHead;
-	for (int i = 0; i < i_index - 1; i++)
+	if (i_index <= size()) //---------
 	{
-		pCur = pCur->pNext;
+		CNode* pCur = pHead;
+		for (int i = 0; i < i_index - 1; i++)
+		{
+			pCur = pCur->pNext;
+		}
+
+		CNode* newNode = new CNode(i_data);
+		CNode* pTemp = pCur->pNext;
+		pCur->pNext = newNode;
+		pCur->pNext->pNext = pTemp;
+		pCur->pNext->pPrev = pCur;
+		pCur->pNext->pNext->pPrev = pCur->pNext;
+	}
+	else //---------
+	{
+		cout << i_index << "의 위치에 insert 할 수 없습니다." << endl;
 	}
 
-	CNode* newNode = new CNode(i_data);
-	CNode* pTemp = pCur->pNext;
-	pCur->pNext = newNode;
-	pCur->pNext->pNext = pTemp;
-	pCur->pNext->pPrev = pCur;
-	pCur->pNext->pNext->pPrev = pCur->pNext;
-
+	return;
 }
 
 template<typename dataType>
