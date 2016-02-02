@@ -49,9 +49,9 @@ void ClGame::gameProceed()
 			{
 				Cl_board.print();
 				cout << endl << pPlayer[i]->getName() << " Wins!" << endl;
-				cout << pPlayer[1-i]->getName() << " Loses!" << endl;
+				cout << pPlayer[1-i]->getName() << " Loses!" << endl << endl;
 
-				break;
+				return;
 			}
 		}
 	}
