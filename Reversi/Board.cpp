@@ -625,7 +625,7 @@ void ClBoard::changeBoard(int nTurn, int* aCoordinate)
 				else if(aString[aCoordinate[0]+i][aCoordinate[1]+i] == "¡Ü")
 				{
 					for(int j = 0; j < i; j++)
-						aString[aCoordinate[0]+i][aCoordinate[1]+j] = "¡Ü";
+						aString[aCoordinate[0]+j][aCoordinate[1]+j] = "¡Ü";
 
 					break;
 				}
@@ -793,7 +793,7 @@ void ClBoard::changeBoard(int nTurn, int* aCoordinate)
 				else if(aString[aCoordinate[0]+i][aCoordinate[1]+i] == "¡Û")
 				{
 					for(int j = 0; j < i; j++)
-						aString[aCoordinate[0]+i][aCoordinate[1]+j] = "¡Û";
+						aString[aCoordinate[0]+j][aCoordinate[1]+j] = "¡Û";
 
 					break;
 				}
