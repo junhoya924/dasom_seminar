@@ -35,7 +35,7 @@ void ClGame::gameProceed()
 			pPlayer[1] = new ClComputer;
 
 			string Cl_name;
-			cout << endl << "Your name: ";
+			cout << endl << "Your Name: ";
 			cin >> Cl_name;
 
 			pPlayer[0]->setName(Cl_name);
