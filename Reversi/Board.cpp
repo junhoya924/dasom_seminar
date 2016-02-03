@@ -28,7 +28,7 @@ ClMap<int, int*> ClBoard::checkBoard(int nTurn)
 				if(aString[i][j] == "●")
 				{
 					if(i > 0 && aString[i-1][j] == "○")
-						for(int k = 2; k < i; k++)
+						for(int k = 2; k <= i; k++)
 						{
 							if(aString[i-k][j] == "○")
 								continue;
@@ -55,7 +55,7 @@ ClMap<int, int*> ClBoard::checkBoard(int nTurn)
 						}
 
 					if(i < 9 && aString[i+1][j] == "○")
-						for(int k = 2; k < 10-i; k++)
+						for(int k = 2; k <= 10-i; k++)
 						{
 							if(aString[i+k][j] == "○")
 								continue;
@@ -82,7 +82,7 @@ ClMap<int, int*> ClBoard::checkBoard(int nTurn)
 						}
 
 					if(j > 0 && aString[i][j-1] == "○")
-						for(int k = 2; k < j; k++)
+						for(int k = 2; k <= j; k++)
 						{
 							if(aString[i][j-k] == "○")
 								continue;
@@ -109,7 +109,7 @@ ClMap<int, int*> ClBoard::checkBoard(int nTurn)
 						}
 
 					if(j < 9 && aString[i][j+1] == "○")
-						for(int k = 2; k < 10-j; k++)
+						for(int k = 2; k <= 10-j; k++)
 						{
 							if(aString[i][j+k] == "○")
 								continue;
@@ -165,10 +165,10 @@ ClMap<int, int*> ClBoard::checkBoard(int nTurn)
 						}
 					}
 
-					if(i < 10 && j < 10 && aString[i+1][j+1] == "○")
+					if(i < 9 && j < 9 && aString[i+1][j+1] == "○")
 					{
 						int k = 2;
-						while(i+k <= 10 && j+k <= 10)
+						while(i+k <= 9 && j+k <= 9)
 						{
 							if(aString[i+k][j+k] == "○")
 								k++;
@@ -195,10 +195,10 @@ ClMap<int, int*> ClBoard::checkBoard(int nTurn)
 						}
 					}
 
-					if(i > 0 && j < 10 && aString[i-1][j+1] == "○")
+					if(i > 0 && j < 9 && aString[i-1][j+1] == "○")
 					{
 						int k = 2;
-						while(i-k >= 0 && j+k <= 10)
+						while(i-k >= 0 && j+k <= 9)
 						{
 							if(aString[i-k][j+k] == "○")
 								k++;
@@ -225,10 +225,10 @@ ClMap<int, int*> ClBoard::checkBoard(int nTurn)
 						}
 					}
 
-					if(i < 10 && j > 0 && aString[i+1][j-1] == "○")
+					if(i < 9 && j > 0 && aString[i+1][j-1] == "○")
 					{
 						int k = 2;
-						while(i+k <= 10 && j-k >= 0)
+						while(i+k <= 9 && j-k >= 0)
 						{
 							if(aString[i+k][j-k] == "○")
 								k++;
@@ -263,7 +263,7 @@ ClMap<int, int*> ClBoard::checkBoard(int nTurn)
 				if(aString[i][j] == "○")
 				{
 					if(i > 0 && aString[i-1][j] == "●")
-						for(int k = 2; k < i; k++)
+						for(int k = 2; k <= i; k++)
 						{
 							if(aString[i-k][j] == "●")
 								continue;
@@ -290,7 +290,7 @@ ClMap<int, int*> ClBoard::checkBoard(int nTurn)
 						}
 
 					if(i < 9 && aString[i+1][j] == "●")
-						for(int k = 2; k < 10-i; k++)
+						for(int k = 2; k <= 10-i; k++)
 						{
 							if(aString[i+k][j] == "●")
 								continue;
@@ -317,7 +317,7 @@ ClMap<int, int*> ClBoard::checkBoard(int nTurn)
 						}
 
 					if(j > 0 && aString[i][j-1] == "●")
-						for(int k = 2; k < j; k++)
+						for(int k = 2; k <= j; k++)
 						{
 							if(aString[i][j-k] == "●")
 								continue;
@@ -344,7 +344,7 @@ ClMap<int, int*> ClBoard::checkBoard(int nTurn)
 						}
 
 					if(j < 9 && aString[i][j+1] == "●")
-						for(int k = 2; k < 10-i; k++)
+						for(int k = 2; k <= 10-i; k++)
 						{
 							if(aString[i][j+k] == "●")
 								continue;
@@ -400,10 +400,10 @@ ClMap<int, int*> ClBoard::checkBoard(int nTurn)
 						}
 					}
 
-					if(i < 10 && j < 10 && aString[i+1][j+1] == "●")
+					if(i < 9 && j < 9 && aString[i+1][j+1] == "●")
 					{
 						int k = 2;
-						while(i+k <= 10 && j+k <= 10)
+						while(i+k <= 9 && j+k <= 9)
 						{
 							if(aString[i+k][j+k] == "●")
 								k++;
@@ -430,10 +430,10 @@ ClMap<int, int*> ClBoard::checkBoard(int nTurn)
 						}
 					}
 
-					if(i > 0 && j < 10 && aString[i-1][j+1] == "●")
+					if(i > 0 && j < 9 && aString[i-1][j+1] == "●")
 					{
 						int k = 2;
-						while(i-k >= 0 && j+k <= 10)
+						while(i-k >= 0 && j+k <= 9)
 						{
 							if(aString[i-k][j+k] == "●")
 								k++;
@@ -460,10 +460,10 @@ ClMap<int, int*> ClBoard::checkBoard(int nTurn)
 						}
 					}
 
-					if(i < 10 && j > 0 && aString[i+1][j-1] == "●")
+					if(i < 9 && j > 0 && aString[i+1][j-1] == "●")
 					{
 						int k = 2;
-						while(i+k <= 10 && j-k >= 0)
+						while(i+k <= 9 && j-k >= 0)
 						{
 							if(aString[i+k][j-k] == "●")
 								k++;
@@ -507,14 +507,16 @@ void ClBoard::cleanBoard()
 
 void ClBoard::changeBoard(int nTurn, int* aCoordinate)
 {
+	if(aCoordinate == NULL)
+		return;
+
 	if(nTurn == 0)	// white
 	{
-		// 다 바꾸기
 		aString[aCoordinate[0]][aCoordinate[1]] = "●";
 
 		if(aCoordinate[0] > 0 && aString[aCoordinate[0]-1][aCoordinate[1]] == "○")
 		{
-			for(int i = 1; i < aCoordinate[0]; i++)
+			for(int i = 1; i <= aCoordinate[0]; i++)
 			{
 				if(aString[aCoordinate[0]-i][aCoordinate[1]] == "○")
 					continue;
@@ -534,7 +536,7 @@ void ClBoard::changeBoard(int nTurn, int* aCoordinate)
 
 		if(aCoordinate[0] < 10 && aString[aCoordinate[0]+1][aCoordinate[1]] == "○")
 		{
-			for(int i = 1; i < 10-aCoordinate[0]; i++)
+			for(int i = 1; i <= 10-aCoordinate[0]; i++)
 			{
 				if(aString[aCoordinate[0]+i][aCoordinate[1]] == "○")
 					continue;
@@ -554,7 +556,7 @@ void ClBoard::changeBoard(int nTurn, int* aCoordinate)
 
 		if(aCoordinate[1] > 0 && aString[aCoordinate[0]][aCoordinate[1]-1] == "○")
 		{
-			for(int i = 1; i < aCoordinate[1]; i++)
+			for(int i = 1; i <= aCoordinate[1]; i++)
 			{
 				if(aString[aCoordinate[0]][aCoordinate[1]-i] == "○")
 					continue;
@@ -574,7 +576,7 @@ void ClBoard::changeBoard(int nTurn, int* aCoordinate)
 
 		if(aCoordinate[1] < 10 && aString[aCoordinate[0]][aCoordinate[1]+1] == "○")
 		{
-			for(int i = 1; i < 10-aCoordinate[1]; i++)
+			for(int i = 1; i <= 10-aCoordinate[1]; i++)
 			{
 				if(aString[aCoordinate[0]][aCoordinate[1]+i] == "○")
 					continue;
@@ -613,10 +615,10 @@ void ClBoard::changeBoard(int nTurn, int* aCoordinate)
 			}
 		}
 
-		if(aCoordinate[0] < 10 && aCoordinate[1] < 10 && aString[aCoordinate[0]+1][aCoordinate[1]+1] == "○")
+		if(aCoordinate[0] < 9 && aCoordinate[1] < 9 && aString[aCoordinate[0]+1][aCoordinate[1]+1] == "○")
 		{
 			int i = 2;
-			while(aCoordinate[0]+i <= 10 && aCoordinate[1]+i <= 10)
+			while(aCoordinate[0]+i <= 9 && aCoordinate[1]+i <= 9)
 			{
 				if(aString[aCoordinate[0]+i][aCoordinate[1]+i] == "○")
 					i++;
@@ -634,10 +636,10 @@ void ClBoard::changeBoard(int nTurn, int* aCoordinate)
 			}
 		}
 
-		if(aCoordinate[0] > 0 && aCoordinate[1] < 10 && aString[aCoordinate[0]-1][aCoordinate[1]+1] == "○")
+		if(aCoordinate[0] > 0 && aCoordinate[1] < 9 && aString[aCoordinate[0]-1][aCoordinate[1]+1] == "○")
 		{
 			int i = 2;
-			while(aCoordinate[0]-i >= 0 && aCoordinate[1]+i <= 10)
+			while(aCoordinate[0]-i >= 0 && aCoordinate[1]+i <= 9)
 			{
 				if(aString[aCoordinate[0]-i][aCoordinate[1]+i] == "○")
 					i++;
@@ -655,10 +657,10 @@ void ClBoard::changeBoard(int nTurn, int* aCoordinate)
 			}
 		}
 
-		if(aCoordinate[0] < 10 && aCoordinate[1] > 0 && aString[aCoordinate[0]+1][aCoordinate[1]-1] == "○")
+		if(aCoordinate[0] < 9 && aCoordinate[1] > 0 && aString[aCoordinate[0]+1][aCoordinate[1]-1] == "○")
 		{
 			int i = 2;
-			while(aCoordinate[0]+i <= 10 && aCoordinate[1]-i >= 0)
+			while(aCoordinate[0]+i <= 9 && aCoordinate[1]-i >= 0)
 			{
 				if(aString[aCoordinate[0]+i][aCoordinate[1]-i] == "○")
 					i++;
@@ -682,7 +684,7 @@ void ClBoard::changeBoard(int nTurn, int* aCoordinate)
 
 		if(aCoordinate[0] > 0 && aString[aCoordinate[0]-1][aCoordinate[1]] == "●")
 		{
-			for(int i = 1; i < aCoordinate[0]; i++)
+			for(int i = 1; i <= aCoordinate[0]; i++)
 			{
 				if(aString[aCoordinate[0]-i][aCoordinate[1]] == "●")
 					continue;
@@ -702,7 +704,7 @@ void ClBoard::changeBoard(int nTurn, int* aCoordinate)
 
 		if(aCoordinate[0] < 10 && aString[aCoordinate[0]+1][aCoordinate[1]] == "●")
 		{
-			for(int i = 1; i < 10-aCoordinate[0]; i++)
+			for(int i = 1; i <= 10-aCoordinate[0]; i++)
 			{
 				if(aString[aCoordinate[0]+i][aCoordinate[1]] == "●")
 					continue;
@@ -722,7 +724,7 @@ void ClBoard::changeBoard(int nTurn, int* aCoordinate)
 
 		if(aCoordinate[1] > 0 && aString[aCoordinate[0]][aCoordinate[1]-1] == "●")
 		{
-			for(int i = 1; i < aCoordinate[1]; i++)
+			for(int i = 1; i <= aCoordinate[1]; i++)
 			{
 				if(aString[aCoordinate[0]][aCoordinate[1]-i] == "●")
 					continue;
@@ -742,7 +744,7 @@ void ClBoard::changeBoard(int nTurn, int* aCoordinate)
 
 		if(aCoordinate[1] < 10 && aString[aCoordinate[0]][aCoordinate[1]+1] == "●")
 		{
-			for(int i = 1; i < 10-aCoordinate[1]; i++)
+			for(int i = 1; i <= 10-aCoordinate[1]; i++)
 			{
 				if(aString[aCoordinate[0]][aCoordinate[1]+i] == "●")
 					continue;
@@ -781,10 +783,10 @@ void ClBoard::changeBoard(int nTurn, int* aCoordinate)
 			}
 		}
 
-		if(aCoordinate[0] < 10 && aCoordinate[1] < 10 && aString[aCoordinate[0]+1][aCoordinate[1]+1] == "●")
+		if(aCoordinate[0] < 9 && aCoordinate[1] < 9 && aString[aCoordinate[0]+1][aCoordinate[1]+1] == "●")
 		{
 			int i = 2;
-			while(aCoordinate[0]+i <= 10 && aCoordinate[1]+i <= 10)
+			while(aCoordinate[0]+i <= 9 && aCoordinate[1]+i <= 9)
 			{
 				if(aString[aCoordinate[0]+i][aCoordinate[1]+i] == "●")
 					i++;
@@ -802,10 +804,10 @@ void ClBoard::changeBoard(int nTurn, int* aCoordinate)
 			}
 		}
 
-		if(aCoordinate[0] > 0 && aCoordinate[1] < 10 && aString[aCoordinate[0]-1][aCoordinate[1]+1] == "●")
+		if(aCoordinate[0] > 0 && aCoordinate[1] < 9 && aString[aCoordinate[0]-1][aCoordinate[1]+1] == "●")
 		{
 			int i = 2;
-			while(aCoordinate[0]-i >= 0 && aCoordinate[1]+i <= 10)
+			while(aCoordinate[0]-i >= 0 && aCoordinate[1]+i <= 9)
 			{
 				if(aString[aCoordinate[0]-i][aCoordinate[1]+i] == "●")
 					i++;
@@ -823,10 +825,10 @@ void ClBoard::changeBoard(int nTurn, int* aCoordinate)
 			}
 		}
 
-		if(aCoordinate[0] < 10 && aCoordinate[1] > 0 && aString[aCoordinate[0]+1][aCoordinate[1]-1] == "●")
+		if(aCoordinate[0] < 9 && aCoordinate[1] > 0 && aString[aCoordinate[0]+1][aCoordinate[1]-1] == "●")
 		{
 			int i = 2;
-			while(aCoordinate[0]+i <= 10 && aCoordinate[1]-i >= 0)
+			while(aCoordinate[0]+i <= 9 && aCoordinate[1]-i >= 0)
 			{
 				if(aString[aCoordinate[0]+i][aCoordinate[1]-i] == "●")
 					i++;
@@ -845,7 +847,7 @@ void ClBoard::changeBoard(int nTurn, int* aCoordinate)
 		}
 	}
 
-	delete aCoordinate;
+	delete[] aCoordinate;
 }
 
 bool ClBoard::endGame()
@@ -856,6 +858,21 @@ bool ClBoard::endGame()
 				return false;
 
 	return true;
+}
+
+int* ClBoard::countGame()
+{
+	int* aScore = new int[2];
+	aScore[0] = 0;
+
+	for(int i = 0; i < 10; i++)
+		for(int j = 0; j < 10; j++)
+			if(aString[i][j] == "●")
+				aScore[0]++;
+
+	aScore[1] = 100 - aScore[0];
+
+	return aScore;
 }
 
 void ClBoard::print()

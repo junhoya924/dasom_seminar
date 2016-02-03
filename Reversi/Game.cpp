@@ -2,9 +2,6 @@
 
 ClGame::ClGame()
 {
-	pPlayer[0] = new ClPlayer;
-	// pPlayer[1] = new ClComputer;
-	pPlayer[1] = new ClPlayer;
 }
 
 ClGame::~ClGame()
@@ -19,23 +16,54 @@ ClGame* ClGame::getInstance()
 
 void ClGame::gameProceed()
 {
-	/*
-	string Cl_name;
-	cout << "Your name: ";
-	cin >> Cl_name;
+	while(1)
+	{
+		system("cls");
 
-	pPlayer[0]->setName(Cl_name);
-	pPlayer[1]->setName("Computer");
-	*/
+		int nPerson;
+		cout << endl << "FucKHU Reversi" << endl << endl;
+		cout << "1. 1P" << endl;
+		cout << "2. 2P" << endl << endl;
+		cout << "Start: ";
+		cin >> nPerson;
+	
+		if(nPerson == 1)
+		{
+			system("cls");
 
-	string Cl_player1, Cl_player2;
-	cout << "Player1's Name: ";
-	cin >> Cl_player1;
-	cout << "Player2's Name: ";
-	cin >> Cl_player2;
+			pPlayer[0] = new ClPlayer;
+			pPlayer[1] = new ClComputer;
 
-	pPlayer[0]->setName(Cl_player1);
-	pPlayer[1]->setName(Cl_player2);
+			string Cl_name;
+			cout << endl << "Your name: ";
+			cin >> Cl_name;
+
+			pPlayer[0]->setName(Cl_name);
+			pPlayer[1]->setName("Computer");
+
+			break;
+		}
+		else if(nPerson == 2)
+		{
+			system("cls");
+
+			pPlayer[0] = new ClPlayer;
+			pPlayer[1] = new ClPlayer;
+
+			string Cl_player1, Cl_player2;
+			cout << endl << "Player1's Name: ";
+			cin >> Cl_player1;
+			cout << "Player2's Name: ";
+			cin >> Cl_player2;
+
+			pPlayer[0]->setName(Cl_player1);
+			pPlayer[1]->setName(Cl_player2);
+
+			break;
+		}
+		else
+			cout << endl << "Wrong!" << endl;
+	}
 
 	while(1)
 	{
@@ -48,8 +76,25 @@ void ClGame::gameProceed()
 			if(Cl_board.endGame() == true)
 			{
 				Cl_board.print();
-				cout << endl << pPlayer[i]->getName() << " Wins!" << endl;
-				cout << pPlayer[1-i]->getName() << " Loses!" << endl << endl;
+
+				int* aScore = Cl_board.countGame();
+
+				if(aScore[0] > aScore[1])
+				{
+					cout << endl << pPlayer[0]->getName() << " Wins! (" << aScore[0] << ")" << endl;
+					cout << pPlayer[1]->getName() << " Loses! (" << aScore[1] << ")" << endl << endl;
+				}
+				else if(aScore[0] < aScore[1])
+				{
+					cout << endl << pPlayer[0]->getName() << " Loses! (" << aScore[0] << ")" << endl;
+					cout << pPlayer[1]->getName() << " Wins! (" << aScore[1] << ")" << endl << endl;
+				}
+				else
+				{
+					cout << endl << "Draw!" << endl << endl;
+				}
+
+				delete[] aScore;
 
 				return;
 			}

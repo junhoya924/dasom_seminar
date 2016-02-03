@@ -10,6 +10,13 @@ ClPlayer::~ClPlayer()
 
 int* ClPlayer::play(ClMap<int, int*> Cl_possible)
 {
+	if(Cl_possible.size() == 0)
+	{
+		cout << "No Choice!" << endl << endl;
+		system("pause");
+		return NULL;
+	}
+
 	while(1)
 	{
 		int nChoice;
@@ -22,10 +29,10 @@ int* ClPlayer::play(ClMap<int, int*> Cl_possible)
 		{
 			int i;
 			for(i = 1; i < nChoice; i++)
-				delete Cl_possible[i];
+				delete[] Cl_possible[i];
 			for(i = nChoice + 1; i <= Cl_possible.size(); i++)
-				delete Cl_possible[i];
-			// delete
+				delete[] Cl_possible[i];
+
 			return Cl_possible[nChoice];
 		}
 	}

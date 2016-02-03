@@ -18,5 +18,6 @@ public:
 	void changeBoard(int, int*);
 	void cleanBoard();
 	bool endGame();
+	int* countGame();
 	void print();
 };
