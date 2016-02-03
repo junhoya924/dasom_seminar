@@ -96,6 +96,8 @@ void ClGame::gameProceed()
 
 				delete[] aScore;
 
+				system("pause");
+
 				return;
 			}
 		}

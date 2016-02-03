@@ -12,7 +12,7 @@ int* ClPlayer::play(ClMap<int, int*> Cl_possible)
 {
 	if(Cl_possible.size() == 0)
 	{
-		cout << "No Choice!" << endl << endl;
+		cout << endl << Cl_name << "'s Turn: No Choice!" << endl << endl;
 		system("pause");
 		return NULL;
 	}

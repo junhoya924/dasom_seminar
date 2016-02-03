@@ -12,16 +12,20 @@ int* ClComputer::play(ClMap<int, int*> Cl_possible)
 {
 	if(Cl_possible.size() == 0)
 	{
-		cout << "No Choice!" << endl << endl;
+		cout << endl << "Computer's Turn: No Choice!" << endl << endl;
 		system("pause");
 		return NULL;
 	}
 
-	cout << endl << "Computer's Turn" << endl << endl;
-	system("pause");
+	cout << endl << "Computer's Turn: ";
 
 	if(Cl_possible.size() == 1)
+	{
+		cout << "1" << endl << endl;
+		system("pause");
+
 		return Cl_possible[1];
+	}
 
 	int aBest[2];
 	aBest[0] = -1;
@@ -139,6 +143,9 @@ int* ClComputer::play(ClMap<int, int*> Cl_possible)
 			}
 		}
 	}
+
+	cout << aBest[1] << endl << endl;
+	system("pause");
 
 	int i;
 	for(i = 1; i < aBest[1]; i++)
