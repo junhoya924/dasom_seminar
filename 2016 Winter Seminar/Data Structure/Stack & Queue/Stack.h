@@ -1,6 +1,7 @@
 #pragma once
+
 #include<iostream>
-#include<vector>
+#include "Queue.h"
 using namespace std;
 
 template<typename T>
@@ -8,62 +9,105 @@ class Stack
 {
 private:
 	int nStackSize;
-	vector<T> vStack;
+	Node<T>* pFirst;
 public:
 	Stack()
 	{
+		pFirst = NULL;
 		nStackSize = 0;
 	}
 
-	void fnPush(T inputData)
+	Stack(Stack& Cl_input)
 	{
-		vStack.push_back(inputData);
+		this->pFirst = Cl_input.pFirst;
+		this->nStackSize = Cl_input.nStackSize;
+	}
+
+	void fnPush(T tInput)
+	{
+		if(nStackSize == 0)
+		{
+			pFirst = new Node<T>;
+			pFirst->pNext = NULL;
+			pFirst->tData = tInput;
+
+			nStackSize++;
+
+			return;
+		}
+
+		Node<T>* p = pFirst;
+		for(int i = 0; i < nStackSize-1; i++)
+			p = p->pNext;
+
+		p->pNext = new Node<T>;
+		p->pNext->pNext = NULL;
+		p->pNext->tData = tInput;
+
 		nStackSize++;
-		return;
 	}
 
 	T fnPop()
 	{
-		nStackSize--;
-		T temp = vStack[nStackSize];
-		vStack.pop_back();
+		if(nStackSize == 0)
+			return false;
 
-		return temp;
+		Node<T>* p = pFirst;
+		for(int i = 0; i < nStackSize-1; i++)
+			p = p->pNext;
+
+		T tReturn = p->tData;
+
+		delete p;
+
+		nStackSize--;
+
+		return tReturn;
 	}
 
 	T fnTop()
 	{
-		return vStack[nStackSize - 1];
+		if(nStackSize == 0)
+			return false;
+
+		Node<T>* p = pFirst;
+		for(int i = 0; i < nStackSize-1; i++)
+			p = p->pNext;
+
+		return p->tData;
 	}
 	
-	bool fnSearch(int iData) // iDataê°€ stackì— ìˆëŠ”ì§€ íƒìƒ‰
+	bool fnSearch(int tInput) // tInputÀÌ stack¿¡ ÀÖ´ÂÁö Å½»ö
 	{
-		int i;
-		for (i = 0; i < nStackSize; i++)
-		{
-			if (vStack[i] == iData)
-			{
-				return true;
-			}
-		}
-
-		if (i == nStackSize) // ì¼ì¹˜í•˜ëŠ” ë°ì´í„°ê°€ ì—†ìœ¼ë©´ false ë°˜í™˜
-		{
-			return false;
-		}
-	}
-
-	void fnAllDelete() // Stack ì „ì²´ ì‚­ì œ
-	{
+		Node<T>* p = pFirst;
 		for (int i = 0; i < nStackSize; i++)
 		{
-			vStack.pop_back();
+			if (p->tData == tInput)
+				return true;
+
+			p = p->pNext;
 		}
 
-		return;
+		return false; // ÀÏÄ¡ÇÏ´Â µ¥ÀÌÅÍ°¡ ¾øÀ¸¸é false ¹İÈ¯
 	}
 
-	T fnStackSize() // Stack ê°œìˆ˜ ë°˜í™˜
+	void fnAllDelete() // Stack ÀüÃ¼ »èÁ¦
+	{
+		for(int i = 0; i < nStackSize; i++)
+		{
+			Node<T>* p = pFirst;
+			for(int i = 0; i < nStackSize-1; i++)
+				p = p->pNext;
+			
+			delete p->pNext;
+		}
+
+		pFirst = NULL;
+
+		nStackSize = 0;
+	}
+
+	T fnStackSize() // Stack °³¼ö ¹İÈ¯
 	{
 		return nStackSize;
 	}

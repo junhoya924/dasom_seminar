@@ -1,63 +1,106 @@
 #pragma once
+
 #include<iostream>
-#include<vector>
 using namespace std;
+
+template<typename T>
+struct Node
+{
+	Node<T>* pNext;
+	T tData;
+};
 
 template<typename T>
 class Queue
 {
 private:
 	int nQueueSize;
-	vector<T> vQueue;
+	Node<T>* pFirst;
 public:
 	Queue()
 	{
+		pFirst = NULL;
 		nQueueSize = 0;
 	}
 
-	void fnEnQueue(T inputData)
+	Queue(Queue& Cl_input)
 	{
-		vQueue.push_back(inputData);
+		this->pFirst = Cl_input.pFirst;
+		this->nQueueSize = Cl_input.nSize;
+	}
+
+	void fnEnQueue(T tInput)
+	{
+		if(nQueueSize == 0)
+		{
+			pFirst = new Node<T>;
+			pFirst->pNext = NULL;
+			pFirst->tData = tInput;
+
+			nQueueSize++;
+
+			return;
+		}
+
+		Node<T>* p = pFirst;
+		for(int i = 0; i < nQueueSize-1; i++)
+			p = p->pNext;
+
+		p->pNext = new Node<T>;
+		p->pNext->pNext = NULL;
+		p->pNext->tData = tInput;
+
 		nQueueSize++;
-		return;
 	}
 
 	T fnDeQueue()
 	{
-		T temp = vQueue[0]; // ì²˜ìŒìœ¼ë¡œ ë“¤ì–´ì˜¨ ë°ì´í„°
-		vQueue.erase(vQueue.begin());
+		if(nQueueSize == 0)
+			return false;
 
-		return temp;
+		Node<T>* p = pFirst->pNext;
+		T tReturn = pFirst->tData;
+
+		delete pFirst;
+
+		pFirst = p;
+
+		nQueueSize--;
+
+		return tReturn;
 	}
 	
-	bool fnSearch(int iData) // iDataê°€ stackì— ìˆëŠ”ì§€ íƒìƒ‰
+	bool fnSearch(T tInput) // tInputÀÌ stack¿¡ ÀÖ´ÂÁö Å½»ö
 	{
-		int i;
-		for (i = 0; i < nQueueSize; i++)
-		{
-			if (vQueue[i] == iData)
-			{
-				return true;
-			}
-		}
-
-		if (i == nQueueSize) // ì¼ì¹˜í•˜ëŠ” ë°ì´í„°ê°€ ì—†ìœ¼ë©´ false ë°˜í™˜
-		{
-			return false;
-		}
-	}
-
-	void fnAllDelete() // Stack ì „ì²´ ì‚­ì œ
-	{
+		Node<T>* p = pFirst;
 		for (int i = 0; i < nQueueSize; i++)
 		{
-			vQueue.pop_back();
+			if (p->tData == tInput)
+				return true;
+
+			p = p->pNext;
 		}
 
-		return;
+		return false; // ÀÏÄ¡ÇÏ´Â µ¥ÀÌÅÍ°¡ ¾øÀ¸¸é false ¹İÈ¯
 	}
 
-	T fnQueueSize() // Stack ê°œìˆ˜ ë°˜í™˜
+	void fnAllDelete() // Queue ÀüÃ¼ »èÁ¦
+	{
+		Node<T>* pTemp = pFirst;
+		Node<T>* p = pFirst;
+		for(int i = 0; i < nQueueSize; i++)
+		{
+			pTemp = p->pNext;
+			delete p;
+			p = pTemp;
+		}
+
+		pFirst = NULL;
+
+		nQueueSize = 0;
+	}
+
+	T fnQueueSize() // Queue °³¼ö ¹İÈ¯
 	{
 		return nQueueSize;
 	}

@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Stack Queue", "Stack Queue.vcxproj", "{090C3B08-F9D3-4D34-9B7A-2A44ACC4E327}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{090C3B08-F9D3-4D34-9B7A-2A44ACC4E327}.Debug|Win32.ActiveCfg = Debug|Win32
+		{090C3B08-F9D3-4D34-9B7A-2A44ACC4E327}.Debug|Win32.Build.0 = Debug|Win32
+		{090C3B08-F9D3-4D34-9B7A-2A44ACC4E327}.Release|Win32.ActiveCfg = Release|Win32
+		{090C3B08-F9D3-4D34-9B7A-2A44ACC4E327}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

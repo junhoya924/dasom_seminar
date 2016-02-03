@@ -23,12 +23,12 @@ int main()
 	cout << "Enter Input third Data : ";
 	cin >> nInputData;
 	myStack.fnPush(nInputData);
-
+	
 	cout << endl;
 	cout << "Stack.pop () -> " << myStack.fnPop() << endl;
 	cout << "Stack.top() -> " << myStack.fnTop() << endl;
 	cout << endl;
-
+	
 	cout << "Stack.Search(3) -> ";
 	if (myStack.fnSearch(3))
 	{
@@ -55,12 +55,12 @@ int main()
 	cout << "Enter Input third Data : ";
 	cin >> nInputData;
 	myQueue.fnEnQueue(nInputData);
-
+	
 	cout << endl;
 	cout << "Queue.DeQueue () -> " << myQueue.fnDeQueue() << endl;
 	cout << "Queue.DeQueue () -> " << myQueue.fnDeQueue() << endl;
 	cout << endl;
-
+	
 	cout << "Queue.Search(3) -> ";
 	if (myQueue.fnSearch(3))
 	{
@@ -71,7 +71,7 @@ int main()
 		cout << "false" << endl << endl;
 	}
 
-	cout << "Queue.StackSize() -> " << myQueue.fnQueueSize() << endl << endl;
+	cout << "Queue.QueueSize() -> " << myQueue.fnQueueSize() << endl << endl;
 
 	return 0;
 }
