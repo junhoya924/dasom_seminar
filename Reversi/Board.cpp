@@ -55,7 +55,7 @@ ClMap<int, int*> ClBoard::checkBoard(int nTurn)
 						}
 
 					if(i < 9 && aString[i+1][j] == "¡Û")
-						for(int k = 2; k <= 10-i; k++)
+						for(int k = 2; k <= 9-i; k++)
 						{
 							if(aString[i+k][j] == "¡Û")
 								continue;
@@ -109,7 +109,7 @@ ClMap<int, int*> ClBoard::checkBoard(int nTurn)
 						}
 
 					if(j < 9 && aString[i][j+1] == "¡Û")
-						for(int k = 2; k <= 10-j; k++)
+						for(int k = 2; k <= 9-j; k++)
 						{
 							if(aString[i][j+k] == "¡Û")
 								continue;
@@ -290,7 +290,7 @@ ClMap<int, int*> ClBoard::checkBoard(int nTurn)
 						}
 
 					if(i < 9 && aString[i+1][j] == "¡Ü")
-						for(int k = 2; k <= 10-i; k++)
+						for(int k = 2; k <= 9-i; k++)
 						{
 							if(aString[i+k][j] == "¡Ü")
 								continue;
@@ -344,7 +344,7 @@ ClMap<int, int*> ClBoard::checkBoard(int nTurn)
 						}
 
 					if(j < 9 && aString[i][j+1] == "¡Ü")
-						for(int k = 2; k <= 10-i; k++)
+						for(int k = 2; k <= 9-j; k++)
 						{
 							if(aString[i][j+k] == "¡Ü")
 								continue;
@@ -536,7 +536,7 @@ void ClBoard::changeBoard(int nTurn, int* aCoordinate)
 
 		if(aCoordinate[0] < 10 && aString[aCoordinate[0]+1][aCoordinate[1]] == "¡Û")
 		{
-			for(int i = 1; i <= 10-aCoordinate[0]; i++)
+			for(int i = 1; i <= 9-aCoordinate[0]; i++)
 			{
 				if(aString[aCoordinate[0]+i][aCoordinate[1]] == "¡Û")
 					continue;
@@ -576,7 +576,7 @@ void ClBoard::changeBoard(int nTurn, int* aCoordinate)
 
 		if(aCoordinate[1] < 10 && aString[aCoordinate[0]][aCoordinate[1]+1] == "¡Û")
 		{
-			for(int i = 1; i <= 10-aCoordinate[1]; i++)
+			for(int i = 1; i <= 9-aCoordinate[1]; i++)
 			{
 				if(aString[aCoordinate[0]][aCoordinate[1]+i] == "¡Û")
 					continue;
@@ -704,7 +704,7 @@ void ClBoard::changeBoard(int nTurn, int* aCoordinate)
 
 		if(aCoordinate[0] < 10 && aString[aCoordinate[0]+1][aCoordinate[1]] == "¡Ü")
 		{
-			for(int i = 1; i <= 10-aCoordinate[0]; i++)
+			for(int i = 1; i <= 9-aCoordinate[0]; i++)
 			{
 				if(aString[aCoordinate[0]+i][aCoordinate[1]] == "¡Ü")
 					continue;
@@ -744,7 +744,7 @@ void ClBoard::changeBoard(int nTurn, int* aCoordinate)
 
 		if(aCoordinate[1] < 10 && aString[aCoordinate[0]][aCoordinate[1]+1] == "¡Ü")
 		{
-			for(int i = 1; i <= 10-aCoordinate[1]; i++)
+			for(int i = 1; i <= 9-aCoordinate[1]; i++)
 			{
 				if(aString[aCoordinate[0]][aCoordinate[1]+i] == "¡Ü")
 					continue;
