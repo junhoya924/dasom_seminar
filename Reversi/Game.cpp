@@ -62,7 +62,16 @@ void ClGame::gameProceed()
 			break;
 		}
 		else
+		{
+			if(cin.fail())
+			{
+				cin.clear();
+				cin.ignore(256, '\n');
+			}
+
 			cout << endl << "Wrong!" << endl;
+			system("pause");
+		}
 	}
 
 	while(1)

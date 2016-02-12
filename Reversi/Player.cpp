@@ -24,7 +24,15 @@ int* ClPlayer::play(ClMap<int, int*> Cl_possible)
 		cin >> nChoice;
 
 		if(nChoice < 1 || nChoice > Cl_possible.size())
+		{
+			if(cin.fail())
+			{
+				cin.clear();
+				cin.ignore(256, '\n');
+			}
+
 			cout << "Wrong!" << endl;
+		}
 		else
 		{
 			int i;
